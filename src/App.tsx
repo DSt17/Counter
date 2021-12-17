@@ -1,30 +1,88 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./Counter/Counter";
 import {SettingsBox} from './SettingCounter/SettingsBox';
 
 function App() {
-    let [number, SetNumber] = useState<number>(0)
-    let minNumberValue = 0
-    let maxNumberValue = 5
-    function ChangeCounter() {
-        if (number <= maxNumberValue) {
-            SetNumber(number + 1)
+
+    let [currentValue, SetCurrentValue] = useState<number>(0)
+    let [maxValue, setMaxValue] = useState<number>(0)
+    let [startValue, setStartValue] = useState<number>(0)
+
+
+
+    function IncCounter() {
+        if (currentValue <= maxValue) {
+            SetCurrentValue(currentValue + 1)
         }
     }
+
     function ResetCounter() {
-        SetNumber(minNumberValue)
+        SetCurrentValue(0)
+    }
+
+    const changeMaxValue = (value: number) => {
+        setMaxValue(value)
+    }
+    const changeStartValue = (value: number) => {
+        SetCurrentValue(value)
+    }
+
+
+    const setMaxValueCB = (currentValue: number) => {
+        setMaxValue(currentValue)
+    }
+    const setStartValueCB = (currentValue: number) => {
+        setStartValue(currentValue)
+    }
+
+    useEffect(() => {
+        getFromLocalCounter()
+        getFromLocalMaxlCounter()
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
+    }, [maxValue])
+
+    useEffect(() => {
+        localStorage.setItem('counterStartValue', JSON.stringify(startValue))
+    }, [startValue])
+
+
+    const getFromLocalCounter = () => {
+        let valueAsStringToLocalStorageMaxValue = localStorage.getItem('counterMaxValue')
+        if (valueAsStringToLocalStorageMaxValue) {
+            let newMaxValue = JSON.parse(valueAsStringToLocalStorageMaxValue)
+            setMaxValue(newMaxValue)
+        }
+    }
+    const getFromLocalMaxlCounter = () => {
+        let valueAsStringToLocalStorageStartValue = localStorage.getItem("counterStartValue")
+        if (valueAsStringToLocalStorageStartValue) {
+            let newStartValue = JSON.parse(valueAsStringToLocalStorageStartValue)
+            setStartValue(newStartValue)
+        }
     }
 
     return (
         <div className="App">
             <div className="SettingsBox">
-                <SettingsBox/>
+                <SettingsBox
+                    maxValue={maxValue}
+                    startValue={startValue}
+                    setMaxValueCB={setMaxValueCB}
+                    setStartValueCB={setStartValueCB}
+                    changeStartValue={changeStartValue}
+                    changeMaxValue={changeMaxValue}
+                />
             </div>
             <div>
                 <Counter
-                    Number={number}
-                    ChangeCounter={ChangeCounter}
+                    startValue={startValue}
+                    maxValue={maxValue}
+                    currentValue={currentValue}
+                    IncCounter={IncCounter}
                     ResetCounter={ResetCounter}
                 />
             </div>
@@ -33,5 +91,6 @@ function App() {
 
     );
 }
+
 
 export default App;

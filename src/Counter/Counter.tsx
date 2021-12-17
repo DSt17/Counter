@@ -3,22 +3,30 @@ import '../App.css';
 import {WindowCounter} from "./WindowCounter";
 import {ButtonBox} from "./ButtonBox";
 
-export type CounterPropsType = {
-    Number: number
-    ChangeCounter ?: () => void
-    ResetCounter ?: () => void
+type CounterPropsType = {
+    currentValue: number
+    IncCounter?: () => void
+    ResetCounter?: () => void
+    startValue: number
+    maxValue: number
 }
 
 export function Counter(props: CounterPropsType) {
 
     return (
         <div className={"CounterBox"}>
-            <WindowCounter Number={props.Number}/>
+            <WindowCounter
+                MaxValue={props.maxValue}
+                startValue={props.startValue}
+                currentValue={props.currentValue}
+            />
             <div className={"ButtonBox"}>
                 <ButtonBox
-                    Number={props.Number}
-                    ChangeCounter={props.ChangeCounter}
-                    ResetCounter={props.ResetCounter}/>
+                    maxValue={props.maxValue}
+                    currentValue={props.currentValue}
+                    IncCounter={props.IncCounter}
+                    ResetCounter={props.ResetCounter}
+                />
             </div>
         </div>
     )
