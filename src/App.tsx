@@ -2,7 +2,18 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./Counter/Counter";
 import {SettingsBox} from './SettingCounter/SettingsBox';
+import {NewCounter} from "./Counter/NewCounter";
+import CounterContainer from "./Counter/CounterContainer";
 
+
+
+function App(){
+    return(
+        <CounterContainer/>
+    )
+}
+
+/*
 function App() {
 
     let [currentValue, SetCurrentValue] = useState<number>(0)
@@ -38,9 +49,8 @@ function App() {
 
     useEffect(() => {
         getFromLocalCounter()
-        getFromLocalMaxlCounter()
+        getFromLocalMaxCounter()
     }, [])
-
     useEffect(() => {
         localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
     }, [maxValue])
@@ -57,7 +67,7 @@ function App() {
             setMaxValue(newMaxValue)
         }
     }
-    const getFromLocalMaxlCounter = () => {
+    const getFromLocalMaxCounter = () => {
         let valueAsStringToLocalStorageStartValue = localStorage.getItem("counterStartValue")
         if (valueAsStringToLocalStorageStartValue) {
             let newStartValue = JSON.parse(valueAsStringToLocalStorageStartValue)
@@ -66,6 +76,7 @@ function App() {
     }
 
     return (
+
         <div className="App">
             <div className="SettingsBox">
                 <SettingsBox
@@ -92,5 +103,6 @@ function App() {
     );
 }
 
+*/
 
 export default App;

@@ -5,8 +5,8 @@ import {ButtonBox} from "./ButtonBox";
 
 type CounterPropsType = {
     currentValue: number
-    IncCounter?: () => void
-    ResetCounter?: () => void
+    IncCounter: () => void
+    ResetCounter: () => void
     startValue: number
     maxValue: number
 }
@@ -16,7 +16,7 @@ export function Counter(props: CounterPropsType) {
     return (
         <div className={"CounterBox"}>
             <WindowCounter
-                MaxValue={props.maxValue}
+                maxValue={props.maxValue}
                 startValue={props.startValue}
                 currentValue={props.currentValue}
             />

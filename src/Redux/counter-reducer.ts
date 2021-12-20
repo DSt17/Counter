@@ -1,4 +1,4 @@
- type initialStateType = {
+ export type initialStateType = {
     id: string
     value: number
 }
@@ -9,10 +9,9 @@
     {id: "startValue", value: 0}
 ]
 
+
  type incCounterAT = {
     type: "INC-COUNTER"
-    id: string
-    value: number
 }
  type changeMaxValueAT = {
     type: "CHANGE-MAX-VALUE"
@@ -35,7 +34,7 @@
  export const counterReducer = (state: Array<initialStateType> = initialState, action: actionType): Array<initialStateType> => {
     switch (action.type) {
         case "INC-COUNTER":
-            return state.map(el => el.id === action.id ? {...el, value: action.value} : el)
+            return state.map(el => el.id ==="currentValue" ? {...el, value: el.value + 1} : el)
         case "RESET-COUNTER":
             return state.map(el => el.id === "currentValue" ? {...el, value: 0} : el)
         case "CHANGE-MAX-VALUE":
@@ -44,16 +43,15 @@
             return state.map(el => el.id === "startValue" ? {...el, value: action.value} : el)
         case "SET-INC-START-VALUE":
             return state.map(el => el.id ==="currentValue" ? {...el, value: action.settingMinValue} : el)
-
+        default:
+            return state
     }
 }
 
 
- export const incCounterAC = (id: string, value: number): incCounterAT => {
+ export const incCounterAC = (): incCounterAT => {
     return {
         type: "INC-COUNTER",
-        id: id,
-        value: value
     }
 }
  export const resetCounterAC = (): resetCounterAT => {

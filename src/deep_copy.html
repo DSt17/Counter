@@ -9,13 +9,13 @@
         age: 28
     };
 
-    let manFullCopy = {...man}
+    let manFullCopy = {...man};
 
 
     // 2. Array of primitives
     let numbers = [1, 2, 3];
 
-    let numbersFullCopy = [...numbers]
+    let numbersFullCopy = [...numbers];
 
 
     // 3. Object inside an object
@@ -49,9 +49,7 @@
     ];
 
 
-    let peopleFullCopy = people.map(el => {
-        return {...el}
-    })
+    let peopleFullCopy = people.map(el => {return {...el}})
 
 
     // 6 Array of objects inside object
@@ -66,7 +64,7 @@
     };
 
     let man3FullCopy = {
-        ...man2, friends: man3.friends.map(el => {
+        ...man3, friends: man3.friends.map(el => {
             return {...el}
         })
     }

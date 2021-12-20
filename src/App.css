@@ -72,3 +72,29 @@ button {
     font-size: 100px;
     text-align: center;
 }
+input{
+    width: 10em;
+}
+.incorrectValue{
+    padding-top: 50px;
+    color: red;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.redBorder{
+    border: 3px solid red;
+    background-color: lightcoral;
+}
+.enterValuePressSet{
+
+    font-size:x-large;
+    width: 260px;
+    height: 150px;
+    background-color: #6ea6d7;
+    margin: auto;
+    margin-top: 5px;
+    border-radius: 7px;
+
+    text-align: center;
+}
